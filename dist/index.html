@@ -36,7 +36,6 @@
       <div class="container intro-copy">
         <p class="eyebrow">30 de septiembre y 1 de octubre de 2026</p>
         <h1 id="inicio-title">GT 1 – Usos de información estadística y acceso a datos públicos</h1>
-        <p class="lead">Consultá la sesión, la coordinación, la dinámica de trabajo y descargá los resúmenes.</p>
       </div>
     </section>
 
@@ -47,19 +46,15 @@
           <h2 id="sesiones-title">Cuatro sesiones</h2>
           <p>Desplegá cada sesión para consultar sus trabajos, dinámica y materiales.</p>
         </div>
-        <div class="session-finder" role="search">
-          <label for="session-search">Encontrá tu sesión</label>
-          <p>Ingresá el nombre de una persona o del trabajo.</p>
-          <input id="session-search" type="search" placeholder="Buscar por trabajo o autor/a…" autocomplete="off" aria-controls="search-matches">
-          <div id="search-matches" class="search-matches" aria-live="polite"></div>
+        <div class="sessions-layout">
+          <div id="session-details" class="session-timeline"></div>
+          <aside class="session-finder" role="search" aria-labelledby="finder-title">
+            <label id="finder-title" for="session-search">Encontrá tu sesión</label>
+            <p>Buscá por trabajo o autor/a.</p>
+            <input id="session-search" type="search" placeholder="Escribí un nombre…" autocomplete="off" aria-controls="search-matches">
+            <div id="search-matches" class="search-matches" aria-live="polite"></div>
+          </aside>
         </div>
-        <div id="session-details" class="session-timeline"></div>
-        <section class="withdrawn-section" id="no-participan" aria-labelledby="no-participan-title">
-          <p class="eyebrow">Información adicional</p>
-          <h2 id="no-participan-title">Trabajos que no participarán de las sesiones</h2>
-          <p>Se conservan aquí para consulta y descarga.</p>
-          <div id="withdrawn-works" class="withdrawn-works"></div>
-        </section>
       </div>
     </section>
 

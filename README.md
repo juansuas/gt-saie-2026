@@ -19,7 +19,7 @@ La fuente principal es `D:\89_SAIE\01_GT`. También se contrastaron la carpeta p
 Se registraron estas decisiones de integración de las fuentes:
 
 - El sitio muestra para la sesión 1 el horario del programa general: 14:30 a 16:15.
-- GT 01.05 y GT 01.04 informaron que no participarán de las sesiones. Se muestran al final de la página, fuera de los cuatro programas, y conservan su resumen para descarga.
+- GT 01.05 y GT 01.04 informaron que no participarán de las sesiones. Se conservan en la fuente de datos y en los documentos, pero no se muestran en el sitio.
 - La cabecera de la sesión 4 en la planilla contiene un horario mal formado; el programa general y los restantes documentos coinciden en 14:30 a 16:30.
 
 ## Actualizar sesiones o trabajos
@@ -30,7 +30,7 @@ Para agregar un resumen:
 
 1. Copiar el archivo original en `dist/documentos/sesion-N/` con un nombre breve, estable y sin espacios.
 2. Agregar el trabajo al arreglo `works` de su sesión en `dist/data/sesiones.js`.
-3. Incluir su ID en el bloque correspondiente. La marca `pending` identifica actualmente los trabajos que no participarán y que se muestran al final de la página.
+3. Incluir su ID en el bloque correspondiente. La marca `pending` identifica actualmente los trabajos que no participarán y que no se muestran en el sitio.
 4. Volver a crear el ZIP `resumenes-sesion-N.zip` con todos los DOCX de esa carpeta.
 
 ## Publicación

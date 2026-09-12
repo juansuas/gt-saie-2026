@@ -100,7 +100,7 @@ img { display: block; max-width: 100%; }
 .muted { background: var(--soft); }
 
 .intro {
-  padding: 54px 0 48px;
+  padding: 36px 0 32px;
   color: #fff;
   background:
     radial-gradient(circle at 88% 20%, rgba(213, 72, 155, 0.48), transparent 30%),
@@ -108,8 +108,7 @@ img { display: block; max-width: 100%; }
 }
 
 .intro-copy { max-width: 960px; margin-left: max(20px, calc((100% - 1120px) / 2)); }
-.intro h1 { max-width: 860px; margin: 6px 0 12px; font-size: clamp(2.1rem, 5vw, 3.8rem); line-height: 1.04; letter-spacing: -0.045em; }
-.intro .lead { max-width: 740px; margin: 0; font-size: clamp(1.08rem, 2vw, 1.3rem); }
+.intro h1 { max-width: 860px; margin: 6px 0 0; font-size: clamp(2rem, 4.4vw, 3.35rem); line-height: 1.04; letter-spacing: -0.045em; }
 
 .eyebrow {
   margin: 0 0 8px;
@@ -122,26 +121,32 @@ img { display: block; max-width: 100%; }
 
 .intro .eyebrow { color: #f6b9e4; }
 .section-heading { max-width: 730px; margin-bottom: 28px; }
-.section-heading h2, .withdrawn-section h2, .colloquium h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.08; letter-spacing: -0.035em; }
-.section-heading p:last-child, .withdrawn-section > p { margin: 0; color: var(--muted-ink); }
+.section-heading h2, .colloquium h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.08; letter-spacing: -0.035em; }
+.section-heading p:last-child { margin: 0; color: var(--muted-ink); }
+
+.sessions-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 38px;
+  align-items: start;
+}
 
 .session-finder {
-  position: relative;
-  max-width: 760px;
-  margin-bottom: 42px;
-  padding: 20px;
+  position: sticky;
+  top: calc(var(--header-offset) + 20px);
+  padding: 17px;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 9px 30px rgba(35, 46, 100, 0.07);
 }
 
-.session-finder label { display: block; font-size: 1.05rem; font-weight: 850; }
-.session-finder > p { margin: 0 0 12px; color: var(--muted-ink); font-size: 0.9rem; }
+.session-finder label { display: block; font-size: 0.95rem; font-weight: 850; }
+.session-finder > p { margin: 0 0 10px; color: var(--muted-ink); font-size: 0.8rem; }
 .session-finder input {
   width: 100%;
-  min-height: 50px;
-  padding: 0 16px;
+  min-height: 44px;
+  padding: 0 12px;
   color: var(--ink);
   background: #fbfbfe;
   border: 1px solid #c8caDC;
@@ -156,8 +161,8 @@ img { display: block; max-width: 100%; }
 .match-button {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 5px;
   align-items: center;
   padding: 11px 12px;
   color: var(--ink);
@@ -171,7 +176,7 @@ img { display: block; max-width: 100%; }
 .match-button span { display: grid; }
 .match-button strong { font-size: 0.88rem; }
 .match-button small { color: var(--muted-ink); }
-.match-button em { color: var(--blue); font-size: 0.78rem; font-style: normal; font-weight: 850; white-space: nowrap; }
+.match-button em { justify-self: start; color: var(--blue); font-size: 0.78rem; font-style: normal; font-weight: 850; white-space: nowrap; }
 
 .session-timeline { position: relative; padding-left: 54px; }
 .session-timeline::before {
@@ -280,12 +285,6 @@ img { display: block; max-width: 100%; }
 .button.primary { color: #fff; background: var(--blue); }
 .button.primary:hover, .button.primary:focus-visible { background: #172979; }
 
-.withdrawn-section { margin-top: 64px; padding-top: 42px; border-top: 1px solid var(--line); }
-.withdrawn-section h2 { max-width: 760px; font-size: clamp(1.55rem, 3vw, 2.2rem); }
-.withdrawn-works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
-.withdrawn-card { border-left-color: #777d91; }
-.session-reference { color: var(--muted-ink); font-size: 0.72rem; font-weight: 750; }
-
 .colloquium { background: #fff; }
 .colloquium-grid { display: grid; grid-template-columns: 1.1fr 0.9fr auto; gap: 38px; align-items: start; }
 .event-theme { max-width: 630px; color: var(--muted-ink); }
@@ -311,8 +310,8 @@ img { display: block; max-width: 100%; }
   .brand img { width: 48px; }
   .session-toggle { grid-template-columns: 76px 1fr auto 18px; }
   .session-count { display: none; }
-  .session-columns, .colloquium-grid { grid-template-columns: 1fr; }
-  .withdrawn-works { grid-template-columns: 1fr; }
+  .sessions-layout, .session-columns, .colloquium-grid { grid-template-columns: 1fr; }
+  .session-finder { position: static; order: -1; max-width: 560px; }
 }
 
 @media (max-width: 640px) {
@@ -323,7 +322,7 @@ img { display: block; max-width: 100%; }
   .nav-inner { gap: 18px; overflow-x: auto; }
   .main-nav a { white-space: nowrap; }
   .section { padding: 48px 0; }
-  .intro { padding: 40px 0 36px; }
+  .intro { padding: 28px 0 26px; }
   .intro-copy { margin-inline: auto; }
   .intro h1 { font-size: 2.35rem; }
   .session-timeline { padding-left: 34px; }

@@ -3,7 +3,6 @@ import { sesiones } from "../data/sesiones.js";
 const details = document.querySelector("#session-details");
 const search = document.querySelector("#session-search");
 const matches = document.querySelector("#search-matches");
-const withdrawnContainer = document.querySelector("#withdrawn-works");
 
 const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
@@ -17,12 +16,11 @@ const normalize = (value = "") => String(value)
 const workById = (session, id) => session.works.find((work) => work.id === id);
 const activeWorks = (session) => session.works.filter((work) => !work.pending);
 
-function workCard(work, session, withdrawn = false) {
+function workCard(work) {
   return `
-    <article class="work-card${withdrawn ? " withdrawn-card" : ""}" id="trabajo-${work.id.replace(/\s+/g, "-").toLowerCase()}">
+    <article class="work-card" id="trabajo-${work.id.replace(/\s+/g, "-").toLowerCase()}">
       <div class="work-topline">
         <span class="work-id">${escapeHtml(work.id)}</span>
-        ${withdrawn ? `<span class="session-reference">Asignado originalmente a ${escapeHtml(session.label)}</span>` : ""}
       </div>
       <h4>${escapeHtml(work.title)}</h4>
       <p class="authors">${escapeHtml(work.authors.join(" · "))}</p>
@@ -40,7 +38,7 @@ function renderSession(session) {
         <p>${escapeHtml(block.detail)}</p>
       </div>
       <div class="block-works">
-        ${block.works.map((id) => workCard(workById(session, id), session)).join("")}
+        ${block.works.map((id) => workCard(workById(session, id))).join("")}
       </div>
     </section>`).join("");
 
@@ -82,9 +80,7 @@ function renderSession(session) {
 
 details.innerHTML = sesiones.map(renderSession).join("");
 
-const allWorks = sesiones.flatMap((session) => session.works.map((work) => ({ work, session })));
-const withdrawnWorks = allWorks.filter(({ work }) => work.pending);
-withdrawnContainer.innerHTML = withdrawnWorks.map(({ work, session }) => workCard(work, session, true)).join("");
+const allWorks = sesiones.flatMap((session) => activeWorks(session).map((work) => ({ work, session })));
 
 function setSessionOpen(sessionId, open = true) {
   const item = document.querySelector(`#sesion-${sessionId}`);
@@ -104,7 +100,7 @@ document.querySelectorAll(".session-toggle").forEach((toggle) => {
 });
 
 function focusResult({ work, session }) {
-  if (!work.pending) setSessionOpen(session.id, true);
+  setSessionOpen(session.id, true);
 
   window.requestAnimationFrame(() => {
     const target = document.querySelector(`#trabajo-${work.id.replace(/\s+/g, "-").toLowerCase()}`);
@@ -143,7 +139,7 @@ function renderMatches() {
       ${found.slice(0, 8).map(({ work, session }, index) => `
         <button type="button" class="match-button" data-match-index="${index}">
           <span><strong>${escapeHtml(work.title)}</strong><small>${escapeHtml(work.authors.join(" · "))}</small></span>
-          <em>${work.pending ? "No participa" : escapeHtml(session.label)}</em>
+          <em>${escapeHtml(session.label)}</em>
         </button>`).join("")}
     </div>`;
   matches.querySelectorAll("[data-match-index]").forEach((button) => {

@@ -62,6 +62,8 @@ if (indexHtml.includes("Orientaciones para el intercambio")) errors.push("Perman
 if (`${indexHtml}\n${appJs}`.includes("Ver resumen")) errors.push("Permanece un botón Ver resumen");
 if (`${indexHtml}\n${appJs}`.includes("Ver orientaciones")) errors.push("Permanece un botón Ver orientaciones");
 if (`${indexHtml}\n${appJs}`.includes("Diferencia entre fuentes")) errors.push("Permanece la anotación sobre diferencias entre fuentes");
+if (indexHtml.includes("Consultá la sesión, la coordinación")) errors.push("Permanece el texto retirado del encabezado");
+if (indexHtml.includes("no-participan") || indexHtml.includes("withdrawn-works")) errors.push("Permanece el bloque de trabajos que no participan");
 
 if (errors.length) {
   console.error(errors.join("\n"));
