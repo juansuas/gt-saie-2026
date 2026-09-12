@@ -7,8 +7,7 @@ export const sesiones = [
     shortDate: "Miércoles 30",
     time: "14:30–16:15",
     coordinator: "Lilia Toranzos",
-    note: "El programa general fija el cierre a las 16:15; la planilla y los documentos internos indican 16:30. La coordinación deberá confirmar la duración final.",
-    dynamic: "Dos bloques de presentaciones, con aproximadamente 15 minutos por trabajo y un intercambio al cierre de cada bloque. El documento de dinámica no asigna el trabajo GT 01.05 a un bloque.",
+    dynamic: "Dos bloques de presentaciones, con aproximadamente 15 minutos por trabajo y un intercambio al cierre de cada bloque.",
     blocks: [
       { label: "Bloque 1", detail: "Dos presentaciones · intercambio", works: ["GT 01.13", "GT 01.17"] },
       { label: "Bloque 2", detail: "Dos presentaciones · intercambio", works: ["GT 01.01", "GT 01.18"] }
@@ -94,7 +93,7 @@ export const sesiones = [
     shortDate: "Jueves 1",
     time: "14:30–16:30",
     coordinator: "Delia González",
-    dynamic: "Dos bloques de dos trabajos, con aproximadamente 15 minutos por grupo y 30 minutos de intercambio al cierre de cada bloque. El documento de dinámica no asigna el trabajo GT 01.04 a un bloque.",
+    dynamic: "Dos bloques de dos trabajos, con aproximadamente 15 minutos por grupo y 30 minutos de intercambio al cierre de cada bloque.",
     blocks: [
       { label: "Bloque 1", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.12", "GT 01.15"] },
       { label: "Bloque 2", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.20", "GT 01.16"] }

@@ -1,167 +1,165 @@
 import { sesiones } from "../data/sesiones.js";
 
-const overview = document.querySelector("#session-overview");
 const details = document.querySelector("#session-details");
-const results = document.querySelector("#work-results");
-const search = document.querySelector("#work-search");
-const filter = document.querySelector("#session-filter");
-const count = document.querySelector("#results-count");
-const orientationLinks = document.querySelector("#orientation-links");
+const search = document.querySelector("#session-search");
+const matches = document.querySelector("#search-matches");
+const withdrawnContainer = document.querySelector("#withdrawn-works");
 
-const escapeHtml = (value = "") => value.replace(/[&<>'"]/g, (char) => ({
+const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
 }[char]));
 
-const normalize = (value = "") => value
+const normalize = (value = "") => String(value)
   .normalize("NFD")
   .replace(/[\u0300-\u036f]/g, "")
   .toLocaleLowerCase("es");
 
-function workById(session, id) {
-  return session.works.find((work) => work.id === id);
-}
+const workById = (session, id) => session.works.find((work) => work.id === id);
+const activeWorks = (session) => session.works.filter((work) => !work.pending);
 
-function viewHref(file) {
-  const source = new URL(file, window.location.href).href;
-  return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(source)}`;
-}
-
-function workCard(work, compact = false) {
+function workCard(work, session, withdrawn = false) {
   return `
-    <article class="work-card${compact ? " compact" : ""}">
+    <article class="work-card${withdrawn ? " withdrawn-card" : ""}" id="trabajo-${work.id.replace(/\s+/g, "-").toLowerCase()}">
       <div class="work-topline">
         <span class="work-id">${escapeHtml(work.id)}</span>
-        ${work.pending ? '<span class="pending-tag">Bloque por confirmar</span>' : ""}
+        ${withdrawn ? `<span class="session-reference">Asignado originalmente a ${escapeHtml(session.label)}</span>` : ""}
       </div>
       <h4>${escapeHtml(work.title)}</h4>
       <p class="authors">${escapeHtml(work.authors.join(" · "))}</p>
       ${work.institution ? `<p class="institution">${escapeHtml(work.institution)}</p>` : ""}
-      <div class="actions">
-        <a class="button secondary small" data-view-doc href="${escapeHtml(work.file)}" target="_blank" rel="noopener">Ver resumen</a>
-        <a class="text-link" href="${escapeHtml(work.file)}" download>Descargar resumen</a>
-      </div>
+      <a class="download-link" href="${escapeHtml(work.file)}" download>Descargar resumen <span aria-hidden="true">↓</span></a>
     </article>`;
 }
 
-overview.innerHTML = sesiones.map((session) => `
-  <article class="session-summary session-${session.id}">
-    <span class="session-number">${session.label}</span>
-    <h3>${session.shortDate}</h3>
-    <p class="session-time">${session.time}</p>
-    <p>Coordinación: <strong>${session.coordinator}</strong></p>
-    <p>${session.works.length} trabajos</p>
-    <a class="text-link" href="#${session.slug}">Ver sesión</a>
-  </article>`).join("");
-
-details.innerHTML = sesiones.map((session) => {
+function renderSession(session) {
+  const works = activeWorks(session);
   const blocks = session.blocks.map((block) => `
     <section class="program-block">
       <div class="block-heading">
-        <h4>${block.label}</h4>
-        <p>${block.detail}</p>
+        <h4>${escapeHtml(block.label)}</h4>
+        <p>${escapeHtml(block.detail)}</p>
       </div>
       <div class="block-works">
-        ${block.works.map((id) => workCard(workById(session, id), true)).join("")}
+        ${block.works.map((id) => workCard(workById(session, id), session)).join("")}
       </div>
-      <p class="exchange">Intercambio</p>
     </section>`).join("");
 
-  const pending = session.pending.length ? `
-    <section class="pending-block" aria-label="Trabajo con bloque pendiente de confirmación">
-      <div class="block-heading">
-        <h4>Bloque por confirmar</h4>
-        <p>La planilla y el documento transversal incluyen este trabajo, pero la dinámica de la sesión no lo asigna a un bloque.</p>
-      </div>
-      ${session.pending.map((id) => workCard(workById(session, id), true)).join("")}
-    </section>` : "";
-
   return `
-    <article class="session-panel session-${session.id}" id="${session.slug}">
-      <header class="session-panel-header">
-        <div>
-          <span class="session-number">${session.label}</span>
-          <h3>${session.date}</h3>
-          <p class="session-time">${session.time}</p>
+    <article class="session-item session-${session.id}" id="${session.slug}">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <button class="session-toggle" type="button" aria-expanded="false" aria-controls="${session.slug}-content">
+        <span class="session-number">${escapeHtml(session.label)}</span>
+        <span class="session-primary">
+          <strong>${escapeHtml(session.date)}</strong>
+          <span>${escapeHtml(session.time)} · Coordinación: ${escapeHtml(session.coordinator)}</span>
+        </span>
+        <span class="session-count">${works.length} ${works.length === 1 ? "trabajo" : "trabajos"}</span>
+        <span class="toggle-copy">Ampliar</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="session-content" id="${session.slug}-content" hidden>
+        <section class="session-section">
+          <h3>Dinámica de trabajo</h3>
+          <p>${escapeHtml(session.dynamic)}</p>
+        </section>
+        <div class="session-columns">
+          <div class="program-flow">${blocks}</div>
+          <aside class="axes" aria-labelledby="axes-${session.id}">
+            <p class="eyebrow">Ejes para el intercambio</p>
+            <h3 id="axes-${session.id}" class="sr-only">Ejes de la ${escapeHtml(session.label)}</h3>
+            <ol>
+              ${session.axes.map((axis) => `<li><strong>${escapeHtml(axis.title)}</strong><span>${escapeHtml(axis.text)}</span></li>`).join("")}
+            </ol>
+          </aside>
         </div>
-        <p class="moderator"><span>Coordinación</span><strong>${session.coordinator}</strong></p>
-      </header>
-      ${session.note ? `<p class="source-note"><strong>Diferencia entre fuentes:</strong> ${session.note}</p>` : ""}
-      <div class="session-columns">
-        <div>
-          <section class="session-section">
-            <h4>Dinámica de trabajo</h4>
-            <p>${session.dynamic}</p>
-          </section>
-          <div class="program-flow">${blocks}${pending}</div>
+        <div class="session-downloads" aria-label="Descargas de la ${escapeHtml(session.label)}">
+          <a class="download-link" href="${escapeHtml(session.orientation)}" download>Descargar orientaciones <span aria-hidden="true">↓</span></a>
+          <a class="button primary" href="${escapeHtml(session.bundle)}" download>Descargar todos los resúmenes</a>
         </div>
-        <aside class="axes" aria-labelledby="axes-${session.id}">
-          <p class="eyebrow">Ejes para el intercambio</p>
-          <h4 id="axes-${session.id}" class="sr-only">Ejes de la ${session.label}</h4>
-          <ol>
-            ${session.axes.map((axis) => `<li><strong>${axis.title}</strong><span>${axis.text}</span></li>`).join("")}
-          </ol>
-        </aside>
-      </div>
-      <div class="session-downloads">
-        <a class="button secondary" data-view-doc href="${session.orientation}" target="_blank" rel="noopener">Ver orientaciones</a>
-        <a class="text-link" href="${session.orientation}" download>Descargar orientaciones</a>
-        <a class="button primary" href="${session.bundle}" download>Descargar todos los resúmenes</a>
       </div>
     </article>`;
-}).join("");
+}
 
-orientationLinks.innerHTML = sesiones.map((session) => `
-  <article class="orientation-card">
-    <span class="session-number">${session.label}</span>
-    <h3>${session.date} · ${session.time}</h3>
-    <p>${session.axes.length} ejes para organizar el intercambio</p>
-    <div class="actions">
-      <a class="button secondary small" data-view-doc href="${session.orientation}" target="_blank" rel="noopener">Ver orientaciones</a>
-      <a class="text-link" href="${session.orientation}" download>Descargar</a>
-    </div>
-  </article>`).join("");
+details.innerHTML = sesiones.map(renderSession).join("");
 
-const allWorks = sesiones.flatMap((session) => session.works.map((work) => ({ ...work, session })));
+const allWorks = sesiones.flatMap((session) => session.works.map((work) => ({ work, session })));
+const withdrawnWorks = allWorks.filter(({ work }) => work.pending);
+withdrawnContainer.innerHTML = withdrawnWorks.map(({ work, session }) => workCard(work, session, true)).join("");
 
-function renderResults() {
+function setSessionOpen(sessionId, open = true) {
+  const item = document.querySelector(`#sesion-${sessionId}`);
+  if (!item) return;
+  const toggle = item.querySelector(".session-toggle");
+  const content = item.querySelector(".session-content");
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.querySelector(".toggle-copy").textContent = open ? "Contraer" : "Ampliar";
+  content.hidden = !open;
+}
+
+document.querySelectorAll(".session-toggle").forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const item = toggle.closest(".session-item");
+    setSessionOpen(item.id.replace("sesion-", ""), toggle.getAttribute("aria-expanded") !== "true");
+  });
+});
+
+function focusResult({ work, session }) {
+  if (!work.pending) setSessionOpen(session.id, true);
+
+  window.requestAnimationFrame(() => {
+    const target = document.querySelector(`#trabajo-${work.id.replace(/\s+/g, "-").toLowerCase()}`);
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+    target?.classList.add("search-target");
+    target?.setAttribute("tabindex", "-1");
+    target?.focus({ preventScroll: true });
+    window.setTimeout(() => target?.classList.remove("search-target"), 2400);
+  });
+}
+
+function getMatches() {
   const query = normalize(search.value.trim());
-  const selected = filter.value;
-  const filtered = allWorks.filter(({ session, title, authors, institution }) => {
-    const matchesSession = selected === "all" || String(session.id) === selected;
-    const haystack = normalize([title, ...authors, institution].join(" "));
-    return matchesSession && (!query || haystack.includes(query));
-  });
-
-  count.textContent = `${filtered.length} ${filtered.length === 1 ? "trabajo" : "trabajos"}`;
-  results.innerHTML = filtered.length ? filtered.map(({ session, ...work }) => `
-    <article class="result-row">
-      <div>
-        <span class="work-id">${work.id}</span>
-        <h3>${escapeHtml(work.title)}</h3>
-        <p class="authors">${escapeHtml(work.authors.join(" · "))}</p>
-        ${work.institution ? `<p class="institution">${escapeHtml(work.institution)}</p>` : ""}
-      </div>
-      <div class="result-session">
-        <strong>${session.label}</strong>
-        <span>${session.shortDate} · ${session.time}</span>
-        <div class="actions">
-          <a class="text-link" href="#${session.slug}">Ver sesión</a>
-          <a class="text-link" data-view-doc href="${work.file}" target="_blank" rel="noopener">Resumen</a>
-        </div>
-      </div>
-    </article>`).join("") : '<p class="empty-state">No encontramos trabajos con esos criterios.</p>';
-  enhanceViewLinks(results);
+  if (!query) return [];
+  return allWorks.filter(({ work }) => normalize([
+    work.title,
+    ...work.authors,
+    work.institution
+  ].join(" ")).includes(query));
 }
 
-function enhanceViewLinks(root = document) {
-  root.querySelectorAll("[data-view-doc]").forEach((link) => {
-    if (!link.dataset.originalFile) link.dataset.originalFile = link.getAttribute("href");
-    link.setAttribute("href", viewHref(link.dataset.originalFile));
+function renderMatches() {
+  const query = search.value.trim();
+  const found = getMatches();
+  if (!query) {
+    matches.innerHTML = "";
+    return;
+  }
+  if (!found.length) {
+    matches.innerHTML = '<p class="search-empty">No se encontraron coincidencias.</p>';
+    return;
+  }
+  matches.innerHTML = `
+    <p class="search-count">${found.length} ${found.length === 1 ? "coincidencia" : "coincidencias"}</p>
+    <div class="match-list">
+      ${found.slice(0, 8).map(({ work, session }, index) => `
+        <button type="button" class="match-button" data-match-index="${index}">
+          <span><strong>${escapeHtml(work.title)}</strong><small>${escapeHtml(work.authors.join(" · "))}</small></span>
+          <em>${work.pending ? "No participa" : escapeHtml(session.label)}</em>
+        </button>`).join("")}
+    </div>`;
+  matches.querySelectorAll("[data-match-index]").forEach((button) => {
+    button.addEventListener("click", () => focusResult(found[Number(button.dataset.matchIndex)]));
   });
 }
 
-search.addEventListener("input", renderResults);
-filter.addEventListener("change", renderResults);
+search.addEventListener("input", renderMatches);
+search.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  const found = getMatches();
+  if (found.length) {
+    event.preventDefault();
+    focusResult(found[0]);
+  }
+});
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", () => {
@@ -169,6 +167,3 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     if (target) target.setAttribute("tabindex", "-1");
   });
 });
-
-enhanceViewLinks();
-renderResults();

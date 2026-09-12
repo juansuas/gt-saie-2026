@@ -6,6 +6,8 @@ import { sesiones } from "../dist/data/sesiones.js";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const errors = [];
 const ids = new Set();
+let activeCount = 0;
+let withdrawnCount = 0;
 
 const requireFile = (relative) => {
   const absolute = path.join(root, relative);
@@ -26,6 +28,8 @@ for (const session of sesiones) {
     ids.add(work.id);
     if (!assigned.has(work.id)) errors.push(`${work.id}: no está en un bloque ni en pendientes`);
     if (!work.title || !work.authors.length) errors.push(`${work.id}: faltan título o autores`);
+    if (work.pending) withdrawnCount += 1;
+    else activeCount += 1;
     requireFile(work.file);
   }
   for (const id of assigned) {
@@ -49,10 +53,19 @@ for (const relative of textFiles) {
 }
 
 if (ids.size !== 20) errors.push(`Se esperaban 20 IDs únicos y hay ${ids.size}`);
+if (activeCount !== 18) errors.push(`Se esperaban 18 trabajos participantes y hay ${activeCount}`);
+if (withdrawnCount !== 2) errors.push(`Se esperaban 2 trabajos que no participan y hay ${withdrawnCount}`);
+
+const indexHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const appJs = fs.readFileSync(path.join(root, "js/app.js"), "utf8");
+if (indexHtml.includes("Orientaciones para el intercambio")) errors.push("Permanece el bloque redundante de orientaciones");
+if (`${indexHtml}\n${appJs}`.includes("Ver resumen")) errors.push("Permanece un botón Ver resumen");
+if (`${indexHtml}\n${appJs}`.includes("Ver orientaciones")) errors.push("Permanece un botón Ver orientaciones");
+if (`${indexHtml}\n${appJs}`.includes("Diferencia entre fuentes")) errors.push("Permanece la anotación sobre diferencias entre fuentes");
 
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log("VALIDATION_OK: 4 sesiones, 20 trabajos y todos los archivos requeridos disponibles.");
+console.log("VALIDATION_OK: 4 sesiones, 18 trabajos participantes, 2 trabajos sin participación y todos los archivos requeridos disponibles.");

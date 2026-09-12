@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Organización de las sesiones del Grupo de Trabajo Estadísticas y usos públicos de la información en el VI Coloquio de Investigación Educativa en Argentina.">
+  <meta name="description" content="Organización de las sesiones del GT 1 – Usos de información estadística y acceso a datos públicos en el VI Coloquio de Investigación Educativa en Argentina.">
   <meta name="theme-color" content="#263a9b">
-  <title>Grupo de Trabajo · Estadísticas y usos públicos de la información</title>
+  <title>GT 1 · Usos de información estadística y acceso a datos públicos</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23263a9b'/%3E%3Cpath d='M14 47V28h8v19zm14 0V18h8v29zm14 0V10h8v37z' fill='white'/%3E%3Ccircle cx='50' cy='12' r='5' fill='%23a23db7'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -15,7 +15,7 @@
     <div class="header-inner">
       <a class="brand" href="#inicio" aria-label="Ir al inicio">
         <img src="assets/logo-saie.png" alt="Sociedad Argentina de Investigación en Educación">
-        <span class="brand-copy"><span>Grupo de Trabajo</span><strong>Estadísticas y usos públicos de la información</strong></span>
+        <span class="brand-copy"><span>GT 1</span><strong>Usos de información estadística y acceso a datos públicos</strong></span>
       </a>
       <div class="event-brief">
         <span>VI Coloquio de Investigación Educativa en Argentina</span>
@@ -26,8 +26,6 @@
       <div class="nav-inner">
         <a href="#inicio">Inicio</a>
         <a href="#sesiones">Sesiones</a>
-        <a href="#trabajos">Trabajos</a>
-        <a href="#orientaciones">Orientaciones</a>
         <a href="#coloquio">Información del Coloquio</a>
       </div>
     </nav>
@@ -35,79 +33,33 @@
 
   <main id="main">
     <section class="intro section" id="inicio" aria-labelledby="inicio-title">
-      <div class="container intro-grid">
-        <div>
-          <p class="eyebrow">30 de septiembre y 1 de octubre de 2026</p>
-          <h1 id="inicio-title">Organización de las sesiones del Grupo de Trabajo</h1>
-          <p class="lead">Se acerca el VI Coloquio de Investigación Educativa en Argentina. La cantidad y diversidad de los trabajos recibidos auguran jornadas especialmente ricas para el intercambio, la discusión y la construcción colectiva.</p>
-          <p>En este espacio podrán consultar en qué sesión presentan, qué trabajos la integran, quién coordina, cómo se organizará el intercambio y cuáles son los ejes propuestos para la discusión.</p>
-        </div>
-        <aside class="quick-find" aria-labelledby="quick-title">
-          <p class="eyebrow">Acceso rápido</p>
-          <h2 id="quick-title">Encontrá tu trabajo</h2>
-          <p>Buscá por título, autoría o institución.</p>
-          <a class="button primary" href="#trabajos">Ir al buscador</a>
-        </aside>
-      </div>
-      <div class="container">
-        <div id="session-overview" class="session-overview" aria-label="Resumen de las cuatro sesiones"></div>
+      <div class="container intro-copy">
+        <p class="eyebrow">30 de septiembre y 1 de octubre de 2026</p>
+        <h1 id="inicio-title">GT 1 – Usos de información estadística y acceso a datos públicos</h1>
+        <p class="lead">Consultá la sesión, la coordinación, la dinámica de trabajo y descargá los resúmenes.</p>
       </div>
     </section>
 
     <section class="section muted" id="sesiones" aria-labelledby="sesiones-title">
-      <div class="container section-heading">
-        <p class="eyebrow">Programa del GT</p>
-        <h2 id="sesiones-title">Sesiones</h2>
-        <p>Cada ficha conserva la dinámica y los ejes definidos en los documentos de coordinación.</p>
-      </div>
-      <div id="session-details" class="container session-details"></div>
-    </section>
-
-    <section class="section" id="trabajos" aria-labelledby="trabajos-title">
-      <div class="container section-heading">
-        <p class="eyebrow">Vista transversal</p>
-        <h2 id="trabajos-title">Trabajos</h2>
-        <p>Consultá los 20 trabajos incluidos en la distribución por sesiones.</p>
-      </div>
       <div class="container">
-        <div class="work-controls" role="search">
-          <label class="search-field">
-            <span>Buscar trabajos</span>
-            <input id="work-search" type="search" placeholder="Buscar por trabajo o autor/a…" autocomplete="off">
-          </label>
-          <label class="filter-field">
-            <span>Filtrar por sesión</span>
-            <select id="session-filter">
-              <option value="all">Todas las sesiones</option>
-              <option value="1">Sesión 1</option>
-              <option value="2">Sesión 2</option>
-              <option value="3">Sesión 3</option>
-              <option value="4">Sesión 4</option>
-            </select>
-          </label>
+        <div class="section-heading">
+          <p class="eyebrow">Programa del GT</p>
+          <h2 id="sesiones-title">Cuatro sesiones</h2>
+          <p>Desplegá cada sesión para consultar sus trabajos, dinámica y materiales.</p>
         </div>
-        <p id="results-count" class="results-count" aria-live="polite"></p>
-        <div id="work-results" class="work-results"></div>
-      </div>
-    </section>
-
-    <section class="section muted" id="orientaciones" aria-labelledby="orientaciones-title">
-      <div class="container section-heading">
-        <p class="eyebrow">Modalidad de trabajo</p>
-        <h2 id="orientaciones-title">Orientaciones para el intercambio</h2>
-        <p>Las sesiones combinan presentaciones breves con espacios de intercambio organizados por ejes comunes. Los tiempos y la composición de los bloques varían según cada sesión.</p>
-      </div>
-      <div class="container orientation-layout">
-        <div id="orientation-links" class="orientation-links"></div>
-        <article class="shared-document">
-          <p class="eyebrow">Documento transversal</p>
-          <h3>Discusiones propuestas por cada trabajo</h3>
-          <p>Reúne los aportes e interrogantes planteados por los veinte trabajos para orientar la conversación colectiva.</p>
-          <div class="actions">
-            <a class="button secondary" data-view-doc href="documentos/orientaciones/discusiones-propuestas-por-cada-trabajo.docx" target="_blank" rel="noopener">Ver documento</a>
-            <a class="text-link" href="documentos/orientaciones/discusiones-propuestas-por-cada-trabajo.docx" download>Descargar DOCX</a>
-          </div>
-        </article>
+        <div class="session-finder" role="search">
+          <label for="session-search">Encontrá tu sesión</label>
+          <p>Ingresá el nombre de una persona o del trabajo.</p>
+          <input id="session-search" type="search" placeholder="Buscar por trabajo o autor/a…" autocomplete="off" aria-controls="search-matches">
+          <div id="search-matches" class="search-matches" aria-live="polite"></div>
+        </div>
+        <div id="session-details" class="session-timeline"></div>
+        <section class="withdrawn-section" id="no-participan" aria-labelledby="no-participan-title">
+          <p class="eyebrow">Información adicional</p>
+          <h2 id="no-participan-title">Trabajos que no participarán de las sesiones</h2>
+          <p>Se conservan aquí para consulta y descarga.</p>
+          <div id="withdrawn-works" class="withdrawn-works"></div>
+        </section>
       </div>
     </section>
 
@@ -135,7 +87,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <img src="assets/logo-saie.png" alt="" aria-hidden="true">
-      <p>Grupo de Trabajo · Estadísticas y usos públicos de la información</p>
+      <p>GT 1 · Usos de información estadística y acceso a datos públicos</p>
       <a href="#inicio">Volver arriba</a>
     </div>
   </footer>
