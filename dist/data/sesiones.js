@@ -65,7 +65,7 @@ export const sesiones = [
     shortDate: "Jueves 1",
     time: "11:00–13:00",
     coordinator: "Juan Suasnábar",
-    dynamic: "Dos bloques temáticos. El documento fuente define la agrupación de trabajos, pero no establece minutos de exposición ni de intercambio.",
+    dynamic: "Un primer bloque con tres presentaciones de 10 minutos y 30 minutos de intercambio; un segundo bloque con dos presentaciones de 10 minutos y 30 minutos de intercambio; y 10 minutos de intercambio final.",
     blocks: [
       { label: "Bloque 1", detail: "Evaluaciones, aprendizajes y construcción de evidencia sobre las escuelas", works: ["GT 01.11", "GT 01.06", "GT 01.14"] },
       { label: "Bloque 2", detail: "Nuevas fuentes, registros y construcción de bases", works: ["GT 01.19", "GT 01.07"] }
