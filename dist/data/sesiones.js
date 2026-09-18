@@ -7,16 +7,41 @@ export const sesiones = [
     shortDate: "Miércoles 30",
     time: "14:30–16:15",
     coordinator: "Lilia Toranzos",
-    dynamic: "Dos bloques de presentaciones, con aproximadamente 15 minutos por trabajo y un intercambio al cierre de cada bloque.",
+    dynamic: "Un primer bloque con tres presentaciones de 10 a 12 minutos y 35 minutos de intercambio; un segundo bloque con dos presentaciones de 12 a 15 minutos y 35 minutos de intercambio.",
     blocks: [
-      { label: "Bloque 1", detail: "Dos presentaciones · intercambio", works: ["GT 01.13", "GT 01.17"] },
+      { label: "Bloque 1", detail: "Tres presentaciones · 35 min de intercambio", works: ["GT 01.13", "GT 01.17", "GT 01.12"] },
       { label: "Bloque 2", detail: "Dos presentaciones · intercambio", works: ["GT 01.01", "GT 01.18"] }
     ],
     pending: ["GT 01.05"],
     axes: [
-      { title: "Prescripción de la evidencia vs. usos reales, legitimación y gobernanza de la evaluación", text: "La brecha entre el modelo de políticas basadas en evidencia y los usos efectivos, simbólicos o políticos de la información producida por evaluaciones estandarizadas." },
-      { title: "El artefacto de devolución, las mediaciones territoriales y los apoyos institucionales", text: "Las restricciones de acceso, la inestabilidad de los formatos y la falta de acompañamiento que condicionan la apropiación escolar de los reportes." },
-      { title: "Sentidos políticos y fronteras metodológicas", text: "Las posibilidades del procesamiento de lenguaje natural y la inteligencia artificial, junto con sus exigencias de transparencia, validez y prevención de sesgos." }
+      {
+        title: "Prescripción de la evidencia vs. usos reales y la tensión entre datos agregados y sistemas de información nominales",
+        text: "La brecha entre el modelo de políticas basadas en evidencia y los usos efectivos, ceremoniales o de planeamiento de las evaluaciones estandarizadas, sumada a la tensión entre los datos agregados y los sistemas nominales orientados al seguimiento de trayectorias.",
+        points: [
+          "Articulación entre diagnósticos de cohorte, matrícula, asistencia y trayectorias reales, sin perder la mirada sobre problemas estructurales.",
+          "Contraste entre usos promovidos y efectivos, y construcción de indicadores útiles para monitorear políticas estratégicas.",
+          "Gobernanza, sostenibilidad e institucionalidad de la producción de información en escenarios de crisis."
+        ]
+      },
+      {
+        title: "Artefactos de información, herramientas multiescala y mediaciones para la apropiación pedagógica",
+        text: "La necesidad de construir mediaciones institucionales y técnicas que traduzcan la información estadística y evaluativa en preguntas pedagógicas situadas.",
+        points: [
+          "Dispositivos de devolución adecuados a cada escala y destinatario, con acceso y apoyo técnico.",
+          "Traducción del dato en preguntas pedagógicas e institucionales, con la mediación de supervisores y equipos técnicos.",
+          "Temporalidad y oportunidad de la intervención mediante señales tempranas de riesgo de abandono o inasistencia reiterada."
+        ]
+      },
+      {
+        title: "Sentidos político-éticos, responsabilidad pública y fronteras metodológicas",
+        text: "Los desafíos éticos y políticos del manejo de información pública, la interpretación situada de las evaluaciones y la responsabilidad sobre los datos nominales sensibles.",
+        points: [
+          "Lectura situada de las evaluaciones estandarizadas junto con indicadores contextuales y pedagógicos.",
+          "Responsabilidad ético-política, acceso responsable y reserva de los datos nominales.",
+          "Transparencia de los algoritmos y prevención de sesgos en registros lingüísticos heterogéneos.",
+          "Posibilidades y límites de las nuevas herramientas como complemento de la interpretación pedagógica."
+        ]
+      }
     ],
     orientation: "documentos/orientaciones/orientaciones-sesion-1.docx",
     bundle: "documentos/sesion-1/resumenes-sesion-1.zip",
@@ -24,6 +49,7 @@ export const sesiones = [
       { id: "GT 01.17", title: "Evaluaciones estandarizadas en Argentina: usos y debates. Entre la consolidación y la crítica", authors: ["Daniel Pinkasz"], institution: "FLACSO · UNGS", file: "documentos/sesion-1/gt-01-17-pinkasz.docx" },
       { id: "GT 01.01", title: "Los Reportes Escuela APRENDER. Algunas consideraciones sobre el acceso a este artefacto, los apoyos para su uso y aspectos problemáticos en el levantamiento de información sobre su uso desde el dispositivo APRENDER", authors: ["Stella Escandell"], institution: "UNSAM", file: "documentos/sesion-1/gt-01-01-escandell.docx" },
       { id: "GT 01.18", title: "Estandarizadas pero no cerradas: procesamiento de lenguaje natural y respuestas abiertas en evaluaciones educativas a gran escala", authors: ["Juan Suasnábar"], institution: "NEES/FCH/UNICEN · UNIPE", file: "documentos/sesion-1/gt-01-18-suasnabar.docx" },
+      { id: "GT 01.12", title: "Entre los resultados estandarizados y los sistemas nominales: usos, tensiones y mediaciones de la información educativa para el planeamiento y la gestión de políticas", authors: ["María Gabriela Brandan Zehnder", "María José Llanos Pozzi", "Marisa Álvarez"], institution: "Ministerio de Educación de Córdoba · UCC · UPC · UNTREF", file: "documentos/sesion-1/gt-01-12-brandan-llanos-alvarez.docx" },
       { id: "GT 01.05", title: "Las pruebas Aprender en la construcción de diagnósticos educativos provinciales: decisiones metodológicas, usos y límites de los indicadores. El caso de Tucumán (2012-2024)", authors: ["Stella Maris Más Rocha"], institution: "UNSAM · UNLu", file: "documentos/sesion-1/gt-01-05-mas-rocha.docx", pending: true },
       { id: "GT 01.13", title: "Acerca de los usos de las evaluaciones estandarizadas: discusiones a partir de un estudio regional comparado", authors: ["Nancy Montes"], institution: "FLACSO · OEI", file: "documentos/sesion-1/gt-01-13-montes.docx" }
     ]
@@ -65,9 +91,9 @@ export const sesiones = [
     shortDate: "Jueves 1",
     time: "11:00–13:00",
     coordinator: "Juan Suasnábar",
-    dynamic: "Un primer bloque con tres presentaciones de 10 minutos y 30 minutos de intercambio; un segundo bloque con dos presentaciones de 10 minutos y 30 minutos de intercambio; y 10 minutos de intercambio final.",
+    dynamic: "Dos bloques con dos presentaciones de 10 minutos y 30 minutos de intercambio cada uno; y 10 minutos de intercambio final.",
     blocks: [
-      { label: "Bloque 1", detail: "Evaluaciones, aprendizajes y construcción de evidencia sobre las escuelas", works: ["GT 01.11", "GT 01.06", "GT 01.14"] },
+      { label: "Bloque 1", detail: "Evaluaciones, aprendizajes y construcción de evidencia sobre las escuelas", works: ["GT 01.06", "GT 01.14"] },
       { label: "Bloque 2", detail: "Nuevas fuentes, registros y construcción de bases", works: ["GT 01.19", "GT 01.07"] }
     ],
     pending: [],
@@ -80,7 +106,6 @@ export const sesiones = [
     works: [
       { id: "GT 01.06", title: "Potencialidades de la triangulación de fuentes con base en los cuestionarios complementarios de APRENDER. Un caso ejemplo", authors: ["Iñaki Bardín", "Stella Escandell"], institution: "UBA · UNTREF · UNSAM", file: "documentos/sesion-3/gt-01-06-bardin-escandell.docx" },
       { id: "GT 01.07", title: "Políticas lingüísticas, capital lingüístico internacional y reproducción social en la educación superior argentina. Resultados del análisis del Programa de Formación y Certificación en Lenguas Extranjeras (PFCLE)", authors: ["Víctor Montoya"], institution: "UNTREF", file: "documentos/sesion-3/gt-01-07-montoya.docx" },
-      { id: "GT 01.11", title: "Desigualdad de trayectorias de aprendizaje en Argentina", authors: ["Cecilia Adrogué", "Eugenia Orlicki"], institution: "Universidad Austral · UdeSA · CONICET · Argentinos por la Educación", file: "documentos/sesion-3/gt-01-11-adrogue-orlicki.docx" },
       { id: "GT 01.14", title: "¿Qué pueden aportar las evaluaciones estandarizadas al estudio de la resiliencia escolar? Evidencia a partir del ERCE 2019", authors: ["Natalia Krüger", "María Marta Formichella"], institution: "UNS · IIESS-CONICET", file: "documentos/sesion-3/gt-01-14-kruger-formichella.docx" },
       { id: "GT 01.19", title: "La investigación educativa en universidades argentinas: construcción y potencial analítico de una base de datos de artículos académicos", authors: ["Silvina Spagnolo", "Francisco Saenz"], institution: "UNS · CONICET", file: "documentos/sesion-3/gt-01-19-spagnolo-saenz.docx" }
     ]
@@ -93,10 +118,10 @@ export const sesiones = [
     shortDate: "Jueves 1",
     time: "14:30–16:30",
     coordinator: "Delia González",
-    dynamic: "Dos bloques de dos trabajos, con aproximadamente 15 minutos por grupo y 30 minutos de intercambio al cierre de cada bloque.",
+    dynamic: "Un primer bloque con una presentación y un segundo bloque con tres presentaciones, con aproximadamente 15 minutos por trabajo y 30 minutos de intercambio al cierre de cada bloque.",
     blocks: [
-      { label: "Bloque 1", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.12", "GT 01.15"] },
-      { label: "Bloque 2", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.20", "GT 01.16"] }
+      { label: "Bloque 1", detail: "Una presentación · 30 min de intercambio", works: ["GT 01.15"] },
+      { label: "Bloque 2", detail: "Tres presentaciones · 30 min de intercambio", works: ["GT 01.20", "GT 01.16", "GT 01.11"] }
     ],
     pending: ["GT 01.04"],
     axes: [
@@ -114,8 +139,8 @@ export const sesiones = [
     works: [
       { id: "GT 01.20", title: "Pruebas Escolares Bonaerenses. Enseñanza y evaluación para la mejora de los aprendizajes", authors: ["Mirta Torres", "Diego Born"], institution: "DGCyE · Provincia de Buenos Aires", file: "documentos/sesion-4/gt-01-20-torres-born.docx" },
       { id: "GT 01.15", title: "Escuelas en Foco: una mirada sobre los logros de aprendizaje de los estudiantes de Nivel Primario en su segundo año de implementación", authors: ["Ivana Templado", "Lara Ailén Encinas", "Stefano Pistoia"], institution: "UEICEE · Ministerio de Educación de la Ciudad de Buenos Aires", file: "documentos/sesion-4/gt-01-15-templado-encinas-pistoia.docx" },
+      { id: "GT 01.11", title: "Desigualdad de trayectorias de aprendizaje en Argentina", authors: ["Cecilia Adrogué", "Eugenia Orlicki"], institution: "Universidad Austral · UdeSA · CONICET · Argentinos por la Educación", file: "documentos/sesion-4/gt-01-11-adrogue-orlicki.docx" },
       { id: "GT 01.04", title: "La vida política de los datos educativos: dataficación, gobernanza y construcción democrática de evidencia en las evaluaciones estandarizadas argentinas", authors: ["Marina Inés Perl"], institution: "", file: "documentos/sesion-4/gt-01-04-perl.docx", pending: true },
-      { id: "GT 01.12", title: "Entre los resultados estandarizados y los sistemas nominales: usos, tensiones y mediaciones de la información educativa para el planeamiento y la gestión de políticas", authors: ["María Gabriela Brandan Zehnder", "María José Llanos Pozzi", "Marisa Álvarez"], institution: "Ministerio de Educación de Córdoba · UCC · UPC · UNTREF", file: "documentos/sesion-4/gt-01-12-brandan-llanos-alvarez.docx" },
       { id: "GT 01.16", title: "Sistema de Medición de los Logros Educativos en Contexto. Propuesta metodológica para medir los logros educativos de los estudiantes de la CABA", authors: ["Jimena Macció", "Sonia Susini", "Flavio Guberman"], institution: "UEICEE · Ministerio de Educación de la Ciudad de Buenos Aires", file: "documentos/sesion-4/gt-01-16-maccio-susini-guberman.docx" }
     ]
   }

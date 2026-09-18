@@ -66,7 +66,7 @@ function renderSession(session) {
             <p class="eyebrow">Ejes para el intercambio</p>
             <h3 id="axes-${session.id}" class="sr-only">Ejes de la ${escapeHtml(session.label)}</h3>
             <ol>
-              ${session.axes.map((axis) => `<li><strong>${escapeHtml(axis.title)}</strong><span>${escapeHtml(axis.text)}</span></li>`).join("")}
+              ${session.axes.map((axis) => `<li><strong>${escapeHtml(axis.title)}</strong><span>${escapeHtml(axis.text)}</span>${axis.points?.length ? `<ul>${axis.points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul>` : ""}</li>`).join("")}
             </ol>
           </aside>
         </div>

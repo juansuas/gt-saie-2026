@@ -17,9 +17,13 @@ const requireFile = (relative) => {
 };
 
 if (sesiones.length !== 4) errors.push(`Se esperaban 4 sesiones y hay ${sesiones.length}`);
+const expectedActiveBySession = new Map([[1, 5], [2, 5], [3, 4], [4, 4]]);
 
 for (const session of sesiones) {
-  if (session.works.length !== 5) errors.push(`${session.label}: se esperaban 5 trabajos`);
+  const sessionActiveCount = session.works.filter((work) => !work.pending).length;
+  if (sessionActiveCount !== expectedActiveBySession.get(session.id)) {
+    errors.push(`${session.label}: se esperaban ${expectedActiveBySession.get(session.id)} trabajos participantes y hay ${sessionActiveCount}`);
+  }
   requireFile(session.orientation);
   requireFile(session.bundle);
   const assigned = new Set([...session.blocks.flatMap((block) => block.works), ...session.pending]);
