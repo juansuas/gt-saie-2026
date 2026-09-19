@@ -118,21 +118,63 @@ export const sesiones = [
     shortDate: "Jueves 1",
     time: "14:30–16:30",
     coordinator: "Delia González",
-    dynamic: "Un primer bloque con una presentación y un segundo bloque con tres presentaciones, con aproximadamente 15 minutos por trabajo y 30 minutos de intercambio al cierre de cada bloque.",
+    dynamic: "Dos bloques con dos presentaciones cada uno. Cada grupo dispondrá de aproximadamente 15 minutos para la presentación y se destinarán 30 minutos para el intercambio al cierre de cada bloque.",
     blocks: [
-      { label: "Bloque 1", detail: "Una presentación · 30 min de intercambio", works: ["GT 01.15"] },
-      { label: "Bloque 2", detail: "Tres presentaciones · 30 min de intercambio", works: ["GT 01.20", "GT 01.16", "GT 01.11"] }
+      { label: "Bloque 1", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.11", "GT 01.15"] },
+      { label: "Bloque 2", detail: "Dos presentaciones · 30 min de intercambio", works: ["GT 01.20", "GT 01.16"] }
     ],
     pending: ["GT 01.04"],
     axes: [
-      { title: "Desafíos de la evaluación de impacto", text: "La retroalimentación oportuna de las políticas, la complementariedad metodológica y la apropiación de resultados por quienes toman decisiones." },
-      { title: "Integración de fuentes y sentido de uso de la información", text: "La integración como construcción de sentidos de uso, más allá del cruce técnico de bases, para producir herramientas situadas de intervención." },
-      { title: "Escalas y temporalidades", text: "La articulación entre el seguimiento individual y las tendencias sistémicas sin despolitizar ni individualizar problemas estructurales." },
-      { title: "Evaluación e interpretación pedagógica", text: "La lectura situada de resultados y las mediaciones necesarias para transformar reportes en preguntas e interpretaciones útiles." },
-      { title: "Dimensión ético-política del dato público y nominalizado", text: "La responsabilidad sobre acceso, circulación y uso de información sensible, y la prevención de efectos de estigmatización." },
-      { title: "Adaptabilidad de las herramientas metodológicas", text: "La revisión de métricas e indicadores frente a cambios en los regímenes académicos y las trayectorias escolares." },
-      { title: "Homogeneidad de la métrica vs. heterogeneidad sistémica", text: "La equidad de las comparaciones entre escuelas con capacidades, recursos y contextos diferentes." },
-      { title: "Restricciones matemáticas, sesgo contextual y evaluación de políticas", text: "Los rendimientos no lineales de la inversión, los rezagos de impacto y el riesgo de penalizar a escuelas en contextos vulnerables." }
+      {
+        title: "Desafíos de la evaluación de impacto",
+        text: "Aunque ha crecido el uso de evaluaciones cuantitativas para medir trayectorias educativas, persisten barreras institucionales relacionadas con la disponibilidad de datos, la comunicación de los hallazgos y su articulación con indagaciones cualitativas.",
+        points: [
+          "Retroalimentación efectiva de las políticas públicas mediante información valiosa y oportuna para ajustar las intervenciones.",
+          "Complementariedad entre resultados cuantitativos, evaluaciones de procesos e indagaciones cualitativas.",
+          "Apropiación y transferencia de resultados junto con referentes y tomadores de decisión."
+        ]
+      },
+      {
+        title: "Integración de fuentes y sentido de uso de la información",
+        text: "La producción fragmentada de datos en circuitos, formatos y tiempos diversos dificulta construir lecturas integrales del sistema educativo.",
+        points: [
+          "Superar la lógica del cruce de bases y definir para qué se integra, quién consume la información y qué decisiones habilita o limita.",
+          "Construir herramientas oportunas, situadas y operativas para la intervención en todos los niveles educativos."
+        ]
+      },
+      {
+        title: "Escalas y temporalidades entre la mirada sistémica y la intervención situada",
+        text: "La tensión entre el seguimiento de la trayectoria individual mediante datos nominales y la comprensión de las tendencias generales del sistema mediante datos agregados.",
+        points: [
+          "Evitar la despolitización y la individualización de problemas estructurales, desigualdades sociales y condiciones institucionales.",
+          "Diseñar mediaciones técnicas, pedagógicas y ético-políticas que articulen la trayectoria individual con políticas de alcance sistémico."
+        ]
+      },
+      {
+        title: "Evaluación e interpretación pedagógica",
+        text: "El riesgo de convertir el resultado de una evaluación en una medida autosuficiente, aislada y descontextualizada de la calidad educativa.",
+        points: [
+          "Realizar una lectura situada que cruce los resultados con las condiciones pedagógicas y socioculturales de cada escuela.",
+          "Transformar la difusión de reportes en preguntas e interpretaciones útiles para supervisores, directivos y docentes."
+        ]
+      },
+      {
+        title: "Dimensión ético-política del dato público y nominalizado",
+        text: "La evaluación como acción política que clasifica, visibiliza, genera discursos y produce consecuencias concretas sobre escuelas, docentes y estudiantes.",
+        points: [
+          "Establecer protocolos y criterios éticos para el acceso, uso y difusión de información sensible o nominalizada.",
+          "Prevenir que los sistemas nominales o los rankings implícitos refuercen etiquetas y prejuicios sobre las comunidades educativas."
+        ]
+      },
+      {
+        title: "Adaptabilidad de herramientas metodológicas frente al cambio de paradigma educativo",
+        text: "La validez de las métricas tradicionales frente a la transformación del régimen académico y de las trayectorias escolares en Secundaria Aprende.",
+        points: [
+          "Revisar la vigencia de indicadores clásicos como sobreedad, repitencia y promoción.",
+          "Rediseñar el índice de logros ITEP-ITES para incorporar métricas emergentes sin perder comparabilidad histórica ni consistencia.",
+          "Definir variables para un seguimiento continuo y cualitativo de los aprendizajes."
+        ]
+      }
     ],
     orientation: "documentos/orientaciones/orientaciones-sesion-4.docx",
     bundle: "documentos/sesion-4/resumenes-sesion-4.zip",
